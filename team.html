@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Команда | Egos</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+/* Заголовок страницы */
+.page-title {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 36px;
+  color: var(--accent);
+}
+
+/* Сетка команды */
+.team-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.member-card {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.25s;
+}
+
+.member-card:hover {
+  transform: translateY(-8px);
+}
+
+.member-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.member-name {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.member-role {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--fg);
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .page-title {
+    font-size: 28px;
+  }
+}
+</style>
+
+</head>
+<body data-theme="green">
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="logo">Egos</div>
+
+  <nav class="nav" id="navMenu">
+    <a href="index.html">Главная</a>
+    <a href="map.html">Карта</a>
+    <a href="team.html">Команда</a>
+    <a href="about.html">О проекте</a>
+    <a href="channels.html">Каналы</a>
+  </nav>
+
+  <button class="burger" id="burger">☰</button>
+</header>
+
+<main class="container">
+
+  <h1 class="page-title">Наша команда</h1>
+
+  <div class="team-grid">
+
+    <!-- 1 Сагындык -->
+    <div class="member-card">
+      <img src="img/sagyndyk.jpg" alt="">
+      <div class="member-name">Сагындык Демесинов</div>
+      <div class="member-role">Бот-разработчик</div>
+    </div>
+
+    <!-- 2 Камила -->
+    <div class="member-card">
+      <img src="img/kamila.jpg" alt="">
+      <div class="member-name">Камила</div>
+      <div class="member-role">Контент-дизайнер</div>
+    </div>
+
+    <!-- 3 Ажар -->
+    <div class="member-card">
+      <img src="img/azhar.jpg" alt="">
+      <div class="member-name">Ажар</div>
+      <div class="member-role">Ресёрчер</div>
+    </div>
+
+    <!-- 4 Медина -->
+    <div class="member-card">
+      <img src="img/medina.jpg" alt="">
+      <div class="member-name">Медина</div>
+      <div class="member-role">SMM</div>
+    </div>
+
+    <!-- 5 Мирас -->
+    <div class="member-card">
+      <img src="img/miras.jpg" alt="">
+      <div class="member-name">Мирас</div>
+      <div class="member-role">Сайт-разработчик</div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 Команда Egos</p>
+</footer>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
