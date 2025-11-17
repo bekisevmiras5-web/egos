@@ -1,99 +1,87 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Egos — агроассистент</title>
-
-<link rel="stylesheet" href="css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egos Project</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="green">
+<body>
+    <!-- Меню -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#team">Команда</a></li>
+                <li><a href="#project">Проект</a></li>
+                <li><a href="#sources">Источники</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- ===== HEADER ===== -->
-<header class="header">
-  <div class="logo">Egos</div>
+    <!-- Главная -->
+    <section id="home">
+        <h1>Добро пожаловать в Egos Project</h1>
+        <p>Мы создаём интеллектуальные решения для агро и образования.</p>
+    </section>
 
-  <nav class="nav" id="navMenu">
-    <a href="index.html">Главная</a>
-    <a href="map.html">Карта</a>
-    <a href="team.html">Команда</a>
-    <a href="about.html">О проекте</a>
-    <a href="channels.html">Каналы</a>
-  </nav>
+    <!-- Команда -->
+    <section id="team">
+        <h2>Наша команда</h2>
+        <div class="team-grid">
+            <div class="member">
+                <img src="team_photos/sagyndyk.jpg" alt="Сагындык">
+                <h3>Сагындык Демесинов</h3>
+                <p>Роль: Бот разработчик</p>
+            </div>
+            <div class="member">
+                <img src="team_photos/kamila.jpg" alt="Камила">
+                <h3>Камила</h3>
+                <p>Роль: Контент дизайнер</p>
+            </div>
+            <div class="member">
+                <img src="team_photos/ajar.jpg" alt="Ажар">
+                <h3>Ажар</h3>
+                <p>Роль: Ресерчер</p>
+            </div>
+            <div class="member">
+                <img src="team_photos/medina.jpg" alt="Медина">
+                <h3>Медина</h3>
+                <p>Роль: SMM</p>
+            </div>
+            <div class="member">
+                <img src="team_photos/miras.jpg" alt="Мирас">
+                <h3>Мирас</h3>
+                <p>Роль: Сайт разработчик</p>
+            </div>
+        </div>
+    </section>
 
-  <button class="burger" id="burger">☰</button>
+    <!-- Проект -->
+    <section id="project">
+        <h2>О проекте</h2>
+        <p>Egos Project сочетает веб-сайт и Telegram-бот для управления сельским хозяйством.</p>
+        <ul>
+            <li>Учёт хозяйства</li>
+            <li>Расчёт оптимального времени посева и сбора урожая</li>
+            <li>Прогноз погоды и рекомендации</li>
+        </ul>
+    </section>
 
-  <div class="controls">
-    <button class="theme-btn" data-theme="light">Светлая</button>
-    <button class="theme-btn" data-theme="dark">Тёмная</button>
-    <button class="theme-btn" data-theme="green">Природа</button>
-    <button class="theme-btn" data-theme="field">Поле</button>
-  </div>
-</header>
+    <!-- Источники -->
+    <section id="sources">
+        <h2>Источники информации</h2>
+        <ul>
+            <li>OpenWeatherMap API — прогноз погоды</li>
+            <li>Сельскохозяйственные справочники</li>
+            <li>Внутренние исследования команды</li>
+        </ul>
+    </section>
 
-<main class="container">
+    <footer>
+        <p>&copy; 2025 Egos Project</p>
+    </footer>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Egos — умный агроассистент</h1>
-    <p>Современная платформа для фермеров и аграриев, которая собирает данные, анализирует их и помогает принимать лучшие решения.</p>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <h2>Что умеет Egos?</h2>
-
-    <div class="feature-grid">
-      <div class="feature">
-        <h3>Интерактивная карта</h3>
-        <p>Отслеживание земель, местоположения техники и погодных условий.</p>
-      </div>
-
-      <div class="feature">
-        <h3>Агрочат-помощник</h3>
-        <p>Отвечает на вопросы, помогает планировать работы и учитывать риски.</p>
-      </div>
-
-      <div class="feature">
-        <h3>Погодные прогнозы</h3>
-        <p>Важная информация для планирования посева, поливов и сбора урожая.</p>
-      </div>
-
-      <div class="feature">
-        <h3>Каналы связи</h3>
-        <p>Телеграм-бот и дополнительные сервисы для удобной работы.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM LINK -->
-  <section class="team-preview">
-    <h2>Наша команда</h2>
-    <p>Познакомься с людьми, которые создают Egos.</p>
-    <a href="team.html" class="btn">Смотреть команду</a>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about-preview">
-    <h2>О проекте</h2>
-    <p>Egos — это цифровой агроассистент, который помогает фермерским хозяйствам использовать данные эффективно и увеличивать урожайность.</p>
-    <a href="about.html" class="btn">Подробнее</a>
-  </section>
-
-  <!-- CHANNELS PREVIEW -->
-  <section class="channels-preview">
-    <h2>Каналы</h2>
-    <p>Основной канал связи — официальный Telegram.</p>
-    <a href="channels.html" class="btn">Перейти</a>
-  </section>
-
-</main>
-
-<footer>
-  <p>© 2025 Команда Egos</p>
-</footer>
-
-<script src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
