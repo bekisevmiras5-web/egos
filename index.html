@@ -2,38 +2,49 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Egos - Главная</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
 <style>
-  body { font-family: Arial, sans-serif; margin:0; background:#f5f7fa; color:#222; transition: background 0.3s, color 0.3s;}
-  a { color: inherit; text-decoration: none;}
-  a:hover { text-decoration: underline;}
-  header { background: #2e7d32; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top:0; z-index: 1000;}
-  .logo { font-weight:bold; font-size:24px;}
-  nav a { margin-left:20px; font-weight:600; color:white;}
-  main.container { max-width:1100px; margin:20px auto 60px; padding:0 15px;}
-  h1,h2 { color:#2e7d32; font-weight:700; margin-bottom:15px;}
-  #map { width:100%; height:350px; border-radius:10px; margin-top:15px; box-shadow:0 3px 10px rgba(0,0,0,0.1);}
-  #weather-box { background:#e0f2f1; padding:15px; border-radius:10px; margin-top:10px; font-weight:600; min-height:60px; box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-  .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:40px 50px; margin-top:40px;}
-  .team-card { background:white; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.1); padding:20px; display:flex; align-items:center; gap:20px;}
-  .team-card img { width:130px; height:130px; border-radius:10px; object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.2); flex-shrink:0;}
-  .team-card p { font-size:15px; line-height:1.3;}
-  .team-card:nth-child(even) { flex-direction: row-reverse; text-align:right;}
-  footer { background:#2e7d32; color:white; text-align:center; padding:15px 0; font-size:14px; position: fixed; bottom:0; width:100%;}
-  /* Модальное окно чата */
-  #ai-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:2000; }
-  #ai-chat-box { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; width:350px; max-width:90%; border-radius:10px; display:flex; flex-direction:column; height:400px;}
-  #ai-chat { flex:1; overflow-y:auto; margin-bottom:10px;}
-  #ai-input { width:100%; padding:8px; border-radius:5px; border:1px solid #ccc;}
-  #ai-send { margin-top:5px; padding:8px; background:#2e7d32; color:white; border:none; border-radius:5px; cursor:pointer;}
-  /* Кнопки снизу */
-  #controls { position: fixed; bottom:60px; right:20px; display:flex; flex-direction:column; gap:10px; z-index:1500;}
-  .ctrl-btn { padding:10px 15px; border:none; border-radius:50%; background:#2e7d32; color:white; cursor:pointer; font-weight:bold;}
-  body.dark { background:#222; color:white;}
-  body.dark #weather-box, body.dark .team-card { background:#333; color:white;}
-  body.dark header, body.dark footer { background:#1b5e20;}
+  body { font-family: Arial, sans-serif; margin:0; background:#f5f7fa; color:#222; transition:0.3s; }
+  a { color: inherit; text-decoration:none; }
+  a:hover { text-decoration: underline; }
+  header { background: #2e7d32; color:white; padding:15px 30px; display:flex; justify-content:space-between; align-items:center; position: sticky; top:0; z-index:1000; }
+  .logo { font-weight:bold; font-size:24px; }
+  nav a { margin-left: 20px; font-weight:600; color:white; }
+  main.container { max-width: 1100px; margin:20px auto 60px; padding:0 15px; }
+  h1,h2 { color:#2e7d32; font-weight:700; margin-bottom:15px; }
+
+  #map { width:100%; height:350px; border-radius:10px; margin-top:15px; box-shadow:0 3px 10px rgba(0,0,0,0.1); }
+  #weather-box { background:#e0f2f1; padding:15px; border-radius:10px; margin-top:10px; font-weight:600; min-height:60px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+
+  .team-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:40px 50px; margin-top:40px; }
+  .team-card { background:white; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.1); padding:20px; display:flex; align-items:center; gap:20px; }
+  .team-card img { width:130px; height:130px; border-radius:10px; object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.2); flex-shrink:0; }
+  .team-card p { font-size:15px; line-height:1.3; }
+  .team-card:nth-child(even) { flex-direction: row-reverse; text-align:right; }
+
+  footer { background:#2e7d32; color:white; text-align:center; padding:15px 0; font-size:14px; position: fixed; bottom:0; width:100%; }
+
+  /* Чат ИИ */
+  #chat-btn { position: fixed; bottom:80px; right:20px; background:#2e7d32; color:white; border:none; border-radius:50%; width:60px; height:60px; font-size:28px; cursor:pointer; z-index:1001; }
+  #chat-modal { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); display:none; justify-content:center; align-items:center; z-index:1000; }
+  #chat-box { background:white; width:400px; max-width:90%; height:500px; border-radius:10px; display:flex; flex-direction:column; overflow:hidden; }
+  #messages { flex:1; padding:10px; overflow-y:auto; background:#fafafa; }
+  .msg { margin:5px 0; }
+  .user { font-weight:bold; color:#2e7d32; }
+  .ai { font-weight:bold; color:#d32f2f; }
+  #input-container { display:flex; border-top:1px solid #ccc; }
+  #input { flex:1; padding:10px; border:none; }
+  #send { padding:0 15px; border:none; background:#2e7d32; color:white; cursor:pointer; }
+  #close-chat { position:absolute; top:5px; right:10px; cursor:pointer; font-size:20px; }
+
+  /* Кнопки управления сайтом */
+  #controls { position: fixed; bottom:150px; right:20px; display:flex; flex-direction:column; gap:10px; z-index:1001; }
+  .ctrl-btn { padding:8px 12px; border:none; border-radius:6px; background:#2e7d32; color:white; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -44,14 +55,15 @@
     <a href="#map-section">Карта</a>
     <a href="#team-section">Команда</a>
     <a href="#about-section">О проекте</a>
-    <a href="#used-section">Использованные</a>
+    <a href="#used-section">Использовали</a>
   </nav>
 </header>
 
 <main class="container">
+
   <section id="map-section">
     <h1>Интерактивная карта</h1>
-    <p>Нажмите на любую точку карты, чтобы узнать погоду в выбранной области.</p>
+    <p>Нажмите на любую точку карты, чтобы узнать погоду.</p>
     <div id="map"></div>
     <div id="weather-box">Погода появится здесь.</div>
   </section>
@@ -61,34 +73,21 @@
     <div class="team-grid">
       <div class="team-card">
         <img src="img/sagindyk.jpg" alt="Sagindyk" />
-        <p><b>Sagindyk</b><br>AI Engineer<br>Я увлекаюсь созданием инновационных решений с использованием микроконтроллеров и ИИ.</p>
+        <p><b>Sagindyk</b><br>AI Engineer<br>Создаю ИИ решения.</p>
       </div>
       <div class="team-card">
-        <p><b>Kamila</b><br>Content Designer<br>Я увлекаюсь спортом, люблю читать книги и изучать языки.</p>
+        <p><b>Kamila</b><br>Content Designer<br>Люблю спорт и книги.</p>
         <img src="img/kamila.jpg" alt="Kamila" />
-      </div>
-      <div class="team-card">
-        <img src="img/azhar.jpg" alt="Azhar" />
-        <p><b>Azhar</b><br>Researcher<br>Я увлекаюсь теннисом и плаванием, люблю слушать музыку.</p>
-      </div>
-      <div class="team-card">
-        <p><b>Medina</b><br>SMM Specialist<br>Я занимаюсь танцами, люблю слушать музыку и рисовать.</p>
-        <img src="img/medina.jpg" alt="Medina" />
-      </div>
-      <div class="team-card">
-        <img src="img/miras.jpg" alt="Miras" />
-        <p><b>Miras</b><br>Frontend Developer<br>Я увлекаюсь логическими играми, люблю читать, слушать музыку и рисовать.</p>
       </div>
     </div>
   </section>
 
   <section id="about-section" style="margin-top:50px;">
     <h2>О проекте</h2>
-    <p>Наш проект направлен на создание интерактивной карты с погодой, а также знакомство с нашей командой и описанием используемых ресурсов.</p>
-    <p>Мы используем современные технологии для визуализации данных и создаём удобный интерфейс для пользователей.</p>
+    <p>Интерактивная карта, команда и ИИ чат.</p>
   </section>
 
-  <section id="used-section" style="margin-top:50px; margin-bottom: 100px;">
+  <section id="used-section" style="margin-top:50px; margin-bottom:100px;">
     <h2>Использованные ресурсы</h2>
     <ul>
       <li>Telegram</li>
@@ -98,108 +97,107 @@
       <li>OpenWeather</li>
     </ul>
   </section>
+
 </main>
 
-<footer>© 2025 Команда Egos</footer>
+<footer>
+  © 2025 Команда Egos
+</footer>
 
-<!-- Модальное окно ИИ -->
-<div id="ai-overlay">
-  <div id="ai-chat-box">
-    <div id="ai-chat"></div>
-    <input type="text" id="ai-input" placeholder="Напишите сообщение...">
-    <button id="ai-send">Отправить</button>
+<!-- Чат ИИ -->
+<button id="chat-btn">💬</button>
+<div id="chat-modal">
+  <div id="chat-box">
+    <span id="close-chat">✖</span>
+    <div id="messages"></div>
+    <div id="input-container">
+      <input id="input" placeholder="Напишите сообщение...">
+      <button id="send">Отправить</button>
+    </div>
   </div>
 </div>
 
 <!-- Кнопки управления -->
 <div id="controls">
-  <button class="ctrl-btn" id="ai-btn">ИИ</button>
-  <button class="ctrl-btn" id="theme-btn">Тема</button>
-  <button class="ctrl-btn" id="music-btn">Музыка</button>
+  <button class="ctrl-btn" id="theme-btn">Сменить тему</button>
+  <button class="ctrl-btn" id="music-btn">Вкл/Выкл музыку</button>
 </div>
 
 <!-- Музыка -->
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<audio id="bg-music" src="music.mp3" loop autoplay></audio>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script>
   // Карта
-  const map = L.map('map').setView([48,66],5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18}).addTo(map);
+  const map = L.map('map').setView([48, 66], 5);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ maxZoom:18 }).addTo(map);
   const weatherBox = document.getElementById('weather-box');
   map.on('click', async function(e){
     const lat = e.latlng.lat.toFixed(4);
     const lon = e.latlng.lng.toFixed(4);
-    weatherBox.textContent="Загрузка погоды...";
-    try{
+    weatherBox.textContent = "Загрузка...";
+    try {
       const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-      if(!res.ok) throw new Error("Ошибка сети");
       const data = await res.json();
       const temp = data.current_weather.temperature;
-      const windSpeed = data.current_weather.windspeed;
-      const weatherCode = data.current_weather.weathercode;
-      weatherBox.innerHTML=`<h3>Погода в точке (${lat},${lon})</h3>
-      <p><b>Температура:</b> ${temp}°C</p>
-      <p><b>Скорость ветра:</b> ${windSpeed} км/ч</p>
-      <p><b>Код погоды:</b> ${weatherCode}</p>`;
-    }catch(err){
-      weatherBox.textContent="Ошибка получения данных о погоде.";
-      console.error(err);
-    }
+      const wind = data.current_weather.windspeed;
+      const code = data.current_weather.weathercode;
+      weatherBox.innerHTML = `<b>Температура:</b> ${temp}°C <br><b>Ветер:</b> ${wind} км/ч <br><b>Код:</b> ${code}`;
+    } catch(e) { weatherBox.textContent = "Ошибка получения погоды"; }
   });
 
-  // ИИ чат
-  const aiOverlay=document.getElementById('ai-overlay');
-  const aiBtn=document.getElementById('ai-btn');
-  const aiSend=document.getElementById('ai-send');
-  const aiInput=document.getElementById('ai-input');
-  const aiChat=document.getElementById('ai-chat');
+  // Чат ИИ (заглушка)
+  const chatBtn = document.getElementById('chat-btn');
+  const chatModal = document.getElementById('chat-modal');
+  const closeChat = document.getElementById('close-chat');
+  const messagesDiv = document.getElementById('messages');
+  const input = document.getElementById('input');
+  const sendBtn = document.getElementById('send');
 
-  aiBtn.onclick=()=>{aiOverlay.style.display='block';};
-  aiOverlay.onclick=(e)=>{if(e.target===aiOverlay) aiOverlay.style.display='none';};
+  chatBtn.onclick = ()=>chatModal.style.display='flex';
+  closeChat.onclick = ()=>chatModal.style.display='none';
 
-  aiSend.onclick=async ()=>{
-    const text=aiInput.value.trim();
-    if(!text) return;
-    const userMsg=document.createElement('div');
-    userMsg.textContent="Вы: "+text;
-    userMsg.style.marginBottom="8px";
-    aiChat.appendChild(userMsg);
-    aiInput.value="";
-    aiChat.scrollTop=aiChat.scrollHeight;
+  function addMessage(text, sender){
+    const div = document.createElement('div');
+    div.className = 'msg ' + sender;
+    div.textContent = text;
+    messagesDiv.appendChild(div);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
 
-    const aiReply=document.createElement('div');
-    aiReply.style.marginBottom="8px";
-    aiReply.style.fontWeight="bold";
-    aiReply.textContent="ИИ: Подождите, формирую ответ...";
-    aiChat.appendChild(aiReply);
-    aiChat.scrollTop=aiChat.scrollHeight;
+  async function sendMessage(){
+    const message = input.value.trim();
+    if(!message) return;
+    addMessage(message,'user');
+    input.value='';
 
-    try{
-      // --- Здесь нужно использовать свой сервер или прокси для OpenAI ---
-      // Пример локальной заглушки:
-      const shortResp=text.split('.').slice(0,2).join('.')+'.';
-      aiReply.textContent="ИИ: "+shortResp;
-    }catch(err){
-      aiReply.textContent="ИИ: Ошибка получения ответа.";
-      console.error(err);
+    try {
+      // Здесь нужно подключить сервер для DeepSeek API
+      // Пример fetch: fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'}, body:JSON.stringify({message})})
+      // Для теста покажем заглушку:
+      const reply = "Это короткий ответ от ИИ (максимум 4 предложения).";
+      addMessage(reply,'ai');
+    } catch(e){
+      addMessage("Ошибка API","ai");
     }
-  };
+  }
 
-  // Кнопка темы
-  const themeBtn=document.getElementById('theme-btn');
-  themeBtn.onclick=()=>{document.body.classList.toggle('dark');};
+  sendBtn.addEventListener('click',sendMessage);
+  input.addEventListener('keypress', e=>{ if(e.key==='Enter') sendMessage(); });
 
-  // Кнопка музыки
-  const musicBtn=document.getElementById('music-btn');
-  const bgMusic=document.getElementById('bg-music');
-  musicBtn.onclick=()=>{
-    if(bgMusic.paused) bgMusic.play();
-    else bgMusic.pause();
-  };
+  // Тема
+  const themeBtn = document.getElementById('theme-btn');
+  themeBtn.onclick = ()=>{
+    document.body.style.background = document.body.style.background=='#222'?'#f5f7fa':'#222';
+    document.body.style.color = document.body.style.color=='#fff'?'#222':'#fff';
+  }
+
+  // Музыка
+  const musicBtn = document.getElementById('music-btn');
+  const music = document.getElementById('bg-music');
+  musicBtn.onclick = ()=>{ music.paused?music.play():music.pause(); }
 </script>
 
 </body>
