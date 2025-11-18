@@ -1,40 +1,53 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+#chatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #4caf50;
+  color: white;
+  border-radius: 50%;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
 }
 
-nav {
-    background: #2c3e50;
-    padding: 10px;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+#chatOverlay {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
 }
 
-nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    gap: 20px;
+#chatBox {
+  background: white;
+  padding: 20px;
+  width: 350px;
+  max-height: 500px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+#chatMessages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
 }
 
-section {
-    padding: 50px;
+#chatInput {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 5px;
 }
 
-.banner {
-    padding: 0;
-}
-
-.person {
-    background: #f5f5f5;
-    padding: 15px;
-    margin: 10px 0;
-}
+.userMsg { text-align: right; margin: 5px 0; color: #333; }
+.aiMsg { text-align: left; margin: 5px 0; color: #0066cc; }
+.aiMsg.error { color: red; }
