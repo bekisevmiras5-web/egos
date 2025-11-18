@@ -1,90 +1,113 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EGOS – Агро-проект</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Egos | Главная</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Leaflet для карты -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
+<body data-theme="green">
 
-<body>
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="logo">Egos</div>
+  <nav class="nav" id="navMenu">
+    <a href="#mapSection">Карта</a>
+    <a href="#teamSection">Команда</a>
+    <a href="#aboutSection">О проекте</a>
+    <a href="#channelsSection">Использовано</a>
+  </nav>
+  <button class="burger" id="burger">☰</button>
+</header>
 
-<!-- 🔝 Навигация -->
-<nav>
-    <ul>
-        <li><a href="#banner">Карта</a></li>
-        <li><a href="#main">Главная</a></li>
-        <li><a href="#team">О команде</a></li>
-        <li><a href="#project">О проекте</a></li>
-        <li><a href="#info">Доп. информация</a></li>
-    </ul>
-</nav>
+<main class="container">
 
-<!-- 🗺️ 1. КАРТА – баннер -->
-<section id="banner" class="banner">
-    <h2>Карта каналов</h2>
-    <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.2769..."
-        width="100%" 
-        height="400" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy">
-    </iframe>
-</section>
+  <!-- ===== КАРТА ===== -->
+  <section class="map-banner" id="mapSection">
+    <h1>Интерактивная карта</h1>
+    <p>Нажмите на любую точку карты, чтобы узнать погоду.</p>
+    <div id="map"></div>
+    <div id="weather-box">Погода появится здесь.</div>
+  </section>
 
-<!-- 🏠 2. ГЛАВНАЯ -->
-<section id="main">
-    <h1>Добро пожаловать на сайт EGOS</h1>
-    <p>Наш проект помогает фермерам эффективно планировать посев, полив и сбор урожая.</p>
-</section>
-
-<!-- 👥 3. О КОМАНДЕ -->
-<section id="team">
+  <!-- ===== КОМАНДА ===== -->
+  <section id="teamSection">
     <h2>Наша команда</h2>
-
-    <div class="person">
-        <h3>Сагындык Демесинов</h3>
-        <p>Бот-разработчик</p>
+    <div class="team-grid">
+      <!-- 1 участник -->
+      <div class="team-card"><img src="img/sagindyk.jpg" alt="Sagindyk"><p><b>Sagindyk</b><br>AI Engineer<br>Я увлекаюсь созданием инновационных решений с использованием микроконтроллеров и ИИ.</p></div>
+      <!-- 2 участник -->
+      <div class="team-card"><p><b>Kamila</b><br>Content Designer<br>Я увлекаюсь спортом, люблю читать книги и изучать языки.</p><img src="img/kamila.jpg" alt="Kamila"></div>
+      <!-- 3 участник -->
+      <div class="team-card"><img src="img/azhar.jpg" alt="Azhar"><p><b>Azhar</b><br>Researcher<br>Я увлекаюсь теннисом и плаванием, люблю слушать музыку.</p></div>
+      <!-- 4 участник -->
+      <div class="team-card"><p><b>Medina</b><br>SMM Specialist<br>Я занимаюсь танцами, люблю слушать музыку и рисовать.</p><img src="img/medina.jpg" alt="Medina"></div>
+      <!-- 5 участник -->
+      <div class="team-card"><img src="img/miras.jpg" alt="Miras"><p><b>Miras</b><br>Frontend Developer<br>Я увлекаюсь логическими играми, люблю читать, слушать музыку и рисовать.</p></div>
     </div>
+  </section>
 
-    <div class="person">
-        <h3>Камила</h3>
-        <p>Контент-дизайнер</p>
-    </div>
-
-    <div class="person">
-        <h3>Ажар</h3>
-        <p>Ресёрчер</p>
-    </div>
-
-    <div class="person">
-        <h3>Мадина</h3>
-        <p>СММ-специалист</p>
-    </div>
-
-    <div class="person">
-        <h3>Мирас</h3>
-        <p>Веб-разработчик</p>
-    </div>
-</section>
-
-<!-- 🌾 4. О ПРОЕКТЕ -->
-<section id="project">
+  <!-- ===== О ПРОЕКТЕ ===== -->
+  <section id="aboutSection">
     <h2>О проекте</h2>
-    <p>Наш Агро-бот помогает прогнозировать погоду, рассчитать сезонность, следить за урожаем и улучшать процессы фермерства.</p>
-</section>
+    <p>Egos — это инновационный веб-проект, объединяющий карту, информацию о команде и полезные ресурсы.</p>
+    <p>Мы используем передовые технологии и создаем решения, которые помогают людям быстро получать нужную информацию.</p>
+    <p>Цель проекта: объединить интерактивные карты и данные о команде в одном удобном веб-интерфейсе.</p>
+  </section>
 
-<!-- 📚 5. ДОП. ИНФОРМАЦИЯ -->
-<section id="info">
-    <h2>Дополнительная информация</h2>
+  <!-- ===== ИСПОЛЬЗОВАНО ===== -->
+  <section id="channelsSection">
+    <h2>Использованные ресурсы</h2>
     <ul>
-        <li><a href="https://instagram.com">Наш Instagram</a></li>
-        <li><a href="https://t.me">Telegram проект</a></li>
-        <li>Материалы исследования</li>
+      <li>Telegram</li>
+      <li>GitHub</li>
+      <li>DeepSeek</li>
+      <li>Replit</li>
+      <li>OpenWeather</li>
     </ul>
-</section>
+  </section>
 
-<script src="script.js"></script>
+</main>
+
+<footer>
+  <p>© 2025 Команда Egos</p>
+</footer>
+
+<!-- JS карта -->
+<script>
+const map = L.map('map').setView([48, 66], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+const weatherBox = document.getElementById('weather-box');
+
+map.on('click', async (e) => {
+  const lat = e.latlng.lat;
+  const lon = e.latlng.lng;
+  weatherBox.textContent = "Загрузка погоды...";
+  try {
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`);
+    const data = await res.json();
+    const temp = data.current.temperature_2m;
+    const code = data.current.weather_code;
+    weatherBox.innerHTML = `<h3>Погода</h3><p>Температура: ${temp}°C</p><p>Состояние: ${weatherCodeToText(code)}</p>`;
+  } catch (err) {
+    weatherBox.textContent = "Ошибка получения данных.";
+    console.error(err);
+  }
+});
+
+function weatherCodeToText(code) {
+  const codes = {0:"Ясно",1:"Преимущественно ясно",2:"Переменная облачность",3:"Пасмурно",45:"Туман",48:"Осаждающийся туман",51:"Слабая морось",53:"Морось",55:"Сильная морось",61:"Лёгкий дождь",63:"Дождь",65:"Сильный дождь",71:"Снег",80:"Лёгкие ливни",81:"Ливень",82:"Сильный ливень"};
+  return codes[code] || "Неизвестно";
+}
+</script>
+
+<!-- JS ИИ-ассистент -->
+<script src="js/assistant.js"></script>
+
 </body>
 </html>
