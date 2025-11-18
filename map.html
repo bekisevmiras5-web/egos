@@ -1,21 +1,17 @@
+<section class="map-banner">
+    <h1>Интерактивная карта</h1>
+    <p>Нажмите на любую точку карты, чтобы узнать погоду в выбранной области.</p>
 
- <!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Карта | Egos</title>
+    <div id="map"></div>
+    <div id="weather-box">Погода появится здесь.</div>
+</section>
 
-<link rel="stylesheet" href="css/style.css">
-
-<!-- Leaflet -->
+<!-- Подключение Leaflet (вставится вместе с кусками) -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <style>
-/* Баннер-стиль блока */
 .map-banner {
-  margin-top: 90px;
   width: 100%;
   background: var(--card);
   padding: 20px;
@@ -38,43 +34,7 @@
   box-shadow: 0 6px 14px rgba(0,0,0,0.07);
 }
 </style>
-</head>
-<body data-theme="green">
 
-<!-- ===== HEADER ===== -->
-<header class="header">
-  <div class="logo">Egos</div>
-
-  <nav class="nav" id="navMenu">
-    <a href="index.html">Главная</a>
-    <a href="map.html">Карта</a>
-    <a href="team.html">Команда</a>
-    <a href="about.html">О проекте</a>
-    <a href="channels.html">Каналы</a>
-  </nav>
-
-  <button class="burger" id="burger">☰</button>
-</header>
-
-<main class="container">
-
-  <section class="map-banner">
-    <h1>Интерактивная карта</h1>
-    <p>Нажмите на любую точку карты, чтобы узнать погоду в выбранной области.</p>
-
-    <div id="map"></div>
-    <div id="weather-box">Погода появится здесь.</div>
-  </section>
-
-</main>
-
-<footer>
-  <p>© 2025 Команда Egos</p>
-</footer>
-
-<script src="js/main.js"></script>
-
-<!-- JS карты и погоды -->
 <script>
 // ===== КАРТА =====
 const map = L.map('map').setView([48, 66], 5);
@@ -98,7 +58,6 @@ map.on('click', async (e) => {
 
     const temp = data.current.temperature_2m;
     const code = data.current.weather_code;
-
     const desc = weatherCodeToText(code);
 
     weatherBox.innerHTML = `
@@ -108,7 +67,6 @@ map.on('click', async (e) => {
     `;
   } catch (err) {
     weatherBox.textContent = "Ошибка получения данных.";
-    console.error(err);
   }
 });
 
@@ -135,6 +93,3 @@ function weatherCodeToText(code) {
   return codes[code] || "Неизвестно";
 }
 </script>
-
-</body>
-</html>
