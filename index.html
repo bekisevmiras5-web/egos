@@ -1,75 +1,62 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Egos | Главная</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Egos - Главная</title>
+  <link rel="stylesheet" href="css/style.css" />
 
-<link rel="stylesheet" href="css/style.css">
-
-<!-- Leaflet для карты -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 <body data-theme="green">
 
-<!-- ===== HEADER ===== -->
 <header class="header">
   <div class="logo">Egos</div>
   <nav class="nav" id="navMenu">
-    <a href="#mapSection">Карта</a>
-    <a href="#teamSection">Команда</a>
-    <a href="#aboutSection">О проекте</a>
-    <a href="#channelsSection">Использовано</a>
+    <a href="index.html">Карта</a>
+    <a href="team.html">Команда</a>
+    <a href="about.html">О проекте</a>
+    <a href="channels.html">Использовали</a>
   </nav>
-  <button class="burger" id="burger">☰</button>
 </header>
 
 <main class="container">
 
-  <!-- ===== КАРТА ===== -->
-  <section class="map-banner" id="mapSection">
+  <!-- Секция карты -->
+  <section class="map-banner">
     <h1>Интерактивная карта</h1>
-    <p>Нажмите на любую точку карты, чтобы узнать погоду.</p>
+    <p>Нажмите на любую точку карты, чтобы узнать погоду в выбранной области.</p>
     <div id="map"></div>
     <div id="weather-box">Погода появится здесь.</div>
   </section>
 
-  <!-- ===== КОМАНДА ===== -->
-  <section id="teamSection">
+  <!-- Секция команды -->
+  <section>
     <h2>Наша команда</h2>
     <div class="team-grid">
-      <!-- 1 участник -->
-      <div class="team-card"><img src="img/sagindyk.jpg" alt="Sagindyk"><p><b>Sagindyk</b><br>AI Engineer<br>Я увлекаюсь созданием инновационных решений с использованием микроконтроллеров и ИИ.</p></div>
-      <!-- 2 участник -->
-      <div class="team-card"><p><b>Kamila</b><br>Content Designer<br>Я увлекаюсь спортом, люблю читать книги и изучать языки.</p><img src="img/kamila.jpg" alt="Kamila"></div>
-      <!-- 3 участник -->
-      <div class="team-card"><img src="img/azhar.jpg" alt="Azhar"><p><b>Azhar</b><br>Researcher<br>Я увлекаюсь теннисом и плаванием, люблю слушать музыку.</p></div>
-      <!-- 4 участник -->
-      <div class="team-card"><p><b>Medina</b><br>SMM Specialist<br>Я занимаюсь танцами, люблю слушать музыку и рисовать.</p><img src="img/medina.jpg" alt="Medina"></div>
-      <!-- 5 участник -->
-      <div class="team-card"><img src="img/miras.jpg" alt="Miras"><p><b>Miras</b><br>Frontend Developer<br>Я увлекаюсь логическими играми, люблю читать, слушать музыку и рисовать.</p></div>
+      <div class="team-card">
+        <img src="img/sagindyk.jpg" alt="Sagindyk" />
+        <p><b>Sagindyk</b><br>AI Engineer<br>Я увлекаюсь созданием инновационных решений с использованием микроконтроллеров и ИИ.</p>
+      </div>
+      <div class="team-card">
+        <p><b>Kamila</b><br>Content Designer<br>Я увлекаюсь спортом, люблю читать книги и изучать языки.</p>
+        <img src="img/kamila.jpg" alt="Kamila" />
+      </div>
+      <div class="team-card">
+        <img src="img/azhar.jpg" alt="Azhar" />
+        <p><b>Azhar</b><br>Researcher<br>Я увлекаюсь теннисом и плаванием, люблю слушать музыку.</p>
+      </div>
+      <div class="team-card">
+        <p><b>Medina</b><br>SMM Specialist<br>Я занимаюсь танцами, люблю слушать музыку и рисовать.</p>
+        <img src="img/medina.jpg" alt="Medina" />
+      </div>
+      <div class="team-card">
+        <img src="img/miras.jpg" alt="Miras" />
+        <p><b>Miras</b><br>Frontend Developer<br>Я увлекаюсь логическими играми, люблю читать, слушать музыку и рисовать.</p>
+      </div>
     </div>
-  </section>
-
-  <!-- ===== О ПРОЕКТЕ ===== -->
-  <section id="aboutSection">
-    <h2>О проекте</h2>
-    <p>Egos — это инновационный веб-проект, объединяющий карту, информацию о команде и полезные ресурсы.</p>
-    <p>Мы используем передовые технологии и создаем решения, которые помогают людям быстро получать нужную информацию.</p>
-    <p>Цель проекта: объединить интерактивные карты и данные о команде в одном удобном веб-интерфейсе.</p>
-  </section>
-
-  <!-- ===== ИСПОЛЬЗОВАНО ===== -->
-  <section id="channelsSection">
-    <h2>Использованные ресурсы</h2>
-    <ul>
-      <li>Telegram</li>
-      <li>GitHub</li>
-      <li>DeepSeek</li>
-      <li>Replit</li>
-      <li>OpenWeather</li>
-    </ul>
   </section>
 
 </main>
@@ -78,36 +65,42 @@
   <p>© 2025 Команда Egos</p>
 </footer>
 
-<!-- JS карта -->
+<script src="js/main.js"></script>
+
 <script>
-const map = L.map('map').setView([48, 66], 5);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
-const weatherBox = document.getElementById('weather-box');
+  // Leaflet карта и погода
+  const map = L.map('map').setView([48, 66], 5);
 
-map.on('click', async (e) => {
-  const lat = e.latlng.lat;
-  const lon = e.latlng.lng;
-  weatherBox.textContent = "Загрузка погоды...";
-  try {
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`);
-    const data = await res.json();
-    const temp = data.current.temperature_2m;
-    const code = data.current.weather_code;
-    weatherBox.innerHTML = `<h3>Погода</h3><p>Температура: ${temp}°C</p><p>Состояние: ${weatherCodeToText(code)}</p>`;
-  } catch (err) {
-    weatherBox.textContent = "Ошибка получения данных.";
-    console.error(err);
-  }
-});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  }).addTo(map);
 
-function weatherCodeToText(code) {
-  const codes = {0:"Ясно",1:"Преимущественно ясно",2:"Переменная облачность",3:"Пасмурно",45:"Туман",48:"Осаждающийся туман",51:"Слабая морось",53:"Морось",55:"Сильная морось",61:"Лёгкий дождь",63:"Дождь",65:"Сильный дождь",71:"Снег",80:"Лёгкие ливни",81:"Ливень",82:"Сильный ливень"};
-  return codes[code] || "Неизвестно";
-}
+  const weatherBox = document.getElementById('weather-box');
+
+  map.on('click', async (e) => {
+    const lat = e.latlng.lat;
+    const lon = e.latlng.lng;
+
+    weatherBox.textContent = "Загрузка погоды...";
+
+    try {
+      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+      const data = await res.json();
+
+      const temp = data.current_weather.temperature;
+      const desc = data.current_weather.weathercode;
+
+      weatherBox.innerHTML = `
+        <h3>Погода в выбранной точке</h3>
+        <p><b>Температура:</b> ${temp}°C</p>
+        <p><b>Код погоды:</b> ${desc}</p>
+      `;
+    } catch (err) {
+      weatherBox.textContent = "Ошибка получения данных.";
+      console.error(err);
+    }
+  });
 </script>
-
-<!-- JS ИИ-ассистент -->
-<script src="js/assistant.js"></script>
 
 </body>
 </html>
