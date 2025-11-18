@@ -4,71 +4,207 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Egos - Главная</title>
-  <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+  <style>
+    /* Сброс и базовые стили */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      color: #222;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    header {
+      background: #2e7d32;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 24px;
+    }
+    nav a {
+      margin-left: 20px;
+      font-weight: 600;
+      color: white;
+    }
+    main.container {
+      max-width: 1100px;
+      margin: 20px auto 60px;
+      padding: 0 15px;
+    }
+    h1, h2 {
+      color: #2e7d32;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    /* Карта и погода */
+    #map {
+      width: 100%;
+      height: 350px;
+      border-radius: 10px;
+      margin-top: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    #weather-box {
+      background: #e0f2f1;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 10px;
+      font-weight: 600;
+      min-height: 60px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    /* Сетка команды */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 50px;
+      margin-top: 40px;
+    }
+    .team-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .team-card img {
+      width: 130px;
+      height: 130px;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+    .team-card p {
+      font-size: 15px;
+      line-height: 1.3;
+    }
+    /* Чередование - у четных карточек меняем порядок */
+    .team-card:nth-child(even) {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    footer {
+      background: #2e7d32;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
-<body data-theme="green">
+<body>
 
-<header class="header">
+<header>
   <div class="logo">Egos</div>
-  <nav class="nav" id="navMenu">
-    <a href="index.html">Карта</a>
-    <a href="team.html">Команда</a>
-    <a href="about.html">О проекте</a>
-    <a href="channels.html">Использовали</a>
+  <nav>
+    <a href="#map-section">Карта</a>
+    <a href="#team-section">Команда</a>
+    <a href="#about-section">О проекте</a>
+    <a href="#used-section">Использовали</a>
   </nav>
 </header>
 
 <main class="container">
 
-  <!-- Секция карты -->
-  <section class="map-banner">
+  <!-- Карта -->
+  <section id="map-section">
     <h1>Интерактивная карта</h1>
     <p>Нажмите на любую точку карты, чтобы узнать погоду в выбранной области.</p>
     <div id="map"></div>
     <div id="weather-box">Погода появится здесь.</div>
   </section>
 
-  <!-- Секция команды -->
-  <section>
+  <!-- Команда -->
+  <section id="team-section">
     <h2>Наша команда</h2>
     <div class="team-grid">
+
       <div class="team-card">
         <img src="img/sagindyk.jpg" alt="Sagindyk" />
         <p><b>Sagindyk</b><br>AI Engineer<br>Я увлекаюсь созданием инновационных решений с использованием микроконтроллеров и ИИ.</p>
       </div>
+
       <div class="team-card">
         <p><b>Kamila</b><br>Content Designer<br>Я увлекаюсь спортом, люблю читать книги и изучать языки.</p>
         <img src="img/kamila.jpg" alt="Kamila" />
       </div>
+
       <div class="team-card">
         <img src="img/azhar.jpg" alt="Azhar" />
         <p><b>Azhar</b><br>Researcher<br>Я увлекаюсь теннисом и плаванием, люблю слушать музыку.</p>
       </div>
+
       <div class="team-card">
         <p><b>Medina</b><br>SMM Specialist<br>Я занимаюсь танцами, люблю слушать музыку и рисовать.</p>
         <img src="img/medina.jpg" alt="Medina" />
       </div>
+
       <div class="team-card">
         <img src="img/miras.jpg" alt="Miras" />
         <p><b>Miras</b><br>Frontend Developer<br>Я увлекаюсь логическими играми, люблю читать, слушать музыку и рисовать.</p>
       </div>
+
     </div>
+  </section>
+
+  <!-- О проекте -->
+  <section id="about-section" style="margin-top:50px;">
+    <h2>О проекте</h2>
+    <p>Наш проект направлен на создание интерактивной карты с погодой, а также знакомство с нашей командой и описанием используемых ресурсов.</p>
+    <p>Мы используем современные технологии для визуализации данных и создаём удобный интерфейс для пользователей.</p>
+  </section>
+
+  <!-- Использованные ресурсы -->
+  <section id="used-section" style="margin-top:50px; margin-bottom: 100px;">
+    <h2>Использованные ресурсы</h2>
+    <ul>
+      <li>Telegram</li>
+      <li>GitHub</li>
+      <li>DeepSeek</li>
+      <li>Replit</li>
+      <li>OpenWeather</li>
+    </ul>
   </section>
 
 </main>
 
 <footer>
-  <p>© 2025 Команда Egos</p>
+  © 2025 Команда Egos
 </footer>
 
-<script src="js/main.js"></script>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
-  // Leaflet карта и погода
+  // Инициализация карты
   const map = L.map('map').setView([48, 66], 5);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -77,27 +213,32 @@
 
   const weatherBox = document.getElementById('weather-box');
 
-  map.on('click', async (e) => {
-    const lat = e.latlng.lat;
-    const lon = e.latlng.lng;
+  // Обработчик клика по карте - получение погоды с open-meteo
+  map.on('click', async function(e) {
+    const lat = e.latlng.lat.toFixed(4);
+    const lon = e.latlng.lng.toFixed(4);
 
     weatherBox.textContent = "Загрузка погоды...";
 
     try {
       const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+      if (!res.ok) throw new Error("Ошибка сети");
+
       const data = await res.json();
-
       const temp = data.current_weather.temperature;
-      const desc = data.current_weather.weathercode;
+      const windSpeed = data.current_weather.windspeed;
+      const weatherCode = data.current_weather.weathercode;
 
+      // Для простоты показываем температуру и скорость ветра, можно добавить описание по weatherCode
       weatherBox.innerHTML = `
-        <h3>Погода в выбранной точке</h3>
+        <h3>Погода в точке (${lat}, ${lon})</h3>
         <p><b>Температура:</b> ${temp}°C</p>
-        <p><b>Код погоды:</b> ${desc}</p>
+        <p><b>Скорость ветра:</b> ${windSpeed} км/ч</p>
+        <p><b>Код погоды:</b> ${weatherCode}</p>
       `;
-    } catch (err) {
-      weatherBox.textContent = "Ошибка получения данных.";
-      console.error(err);
+    } catch (error) {
+      weatherBox.textContent = "Ошибка получения данных о погоде.";
+      console.error(error);
     }
   });
 </script>
