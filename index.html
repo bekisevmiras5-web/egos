@@ -17,14 +17,12 @@
       margin: 0;
       background: #f5f7fa;
       color: #222;
+      transition: background 0.3s, color 0.3s;
+      padding-bottom: 60px; /* для footer */
     }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     header {
       background: #2e7d32;
       color: white;
@@ -36,88 +34,37 @@
       top: 0;
       z-index: 1000;
     }
-    .logo {
-      font-weight: bold;
-      font-size: 24px;
-    }
-    nav a {
-      margin-left: 20px;
-      font-weight: 600;
-      color: white;
-    }
-    main.container {
-      max-width: 1100px;
-      margin: 20px auto 60px;
-      padding: 0 15px;
-    }
-    h1, h2 {
-      color: #2e7d32;
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
+    .logo { font-weight: bold; font-size: 24px; }
+    nav a { margin-left: 20px; font-weight: 600; color: white; }
+
+    main.container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+
+    h1, h2 { color: #2e7d32; font-weight: 700; margin-bottom: 15px; }
 
     /* Карта и погода */
-    #map {
-      width: 100%;
-      height: 350px;
-      border-radius: 10px;
-      margin-top: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-    #weather-box {
-      background: #e0f2f1;
-      padding: 15px;
-      border-radius: 10px;
-      margin-top: 10px;
-      font-weight: 600;
-      min-height: 60px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+    #map { width: 100%; height: 350px; border-radius: 10px; margin-top: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+    #weather-box { background: #e0f2f1; padding: 15px; border-radius: 10px; margin-top: 10px; font-weight: 600; min-height: 60px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
 
     /* Сетка команды */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px 50px;
-      margin-top: 40px;
-    }
-    .team-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .team-card img {
-      width: 130px;
-      height: 130px;
-      border-radius: 10px;
-      object-fit: cover;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      flex-shrink: 0;
-    }
-    .team-card p {
-      font-size: 15px;
-      line-height: 1.3;
-    }
-    /* Чередование - у четных карточек меняем порядок */
-    .team-card:nth-child(even) {
-      flex-direction: row-reverse;
-      text-align: right;
-    }
+    .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 50px; margin-top: 40px; }
+    .team-card { background: white; border-radius: 12px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); padding: 20px; display: flex; align-items: center; gap: 20px; }
+    .team-card img { width: 130px; height: 130px; border-radius: 10px; object-fit: cover; box-shadow: 0 2px 6px rgba(0,0,0,0.2); flex-shrink: 0; }
+    .team-card p { font-size: 15px; line-height: 1.3; }
+    .team-card:nth-child(even) { flex-direction: row-reverse; text-align: right; }
 
-    footer {
-      background: #2e7d32;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 14px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
+    footer { background: #2e7d32; color: white; text-align: center; padding: 15px 0; font-size: 14px; position: fixed; bottom: 0; width: 100%; }
+
+    /* Модальное окно ИИ */
+    #ai-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1099; justify-content:center; align-items:center; }
+    #ai-modal .ai-content { background:white; width:400px; max-width:90%; border-radius:12px; padding:20px; display:flex; flex-direction:column; max-height:80%; overflow:hidden; }
+    #ai-chat { flex:1; overflow-y:auto; border:1px solid #ddd; padding:10px; margin-bottom:10px; border-radius:8px; }
+
+    /* Верхние кнопки */
+    .top-buttons { position:fixed; top:20px; right:20px; display:flex; gap:10px; z-index:1100; }
+    .top-buttons button { padding:10px; border-radius:6px; cursor:pointer; }
+
+    /* Кнопка ИИ */
+    #ai-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1100; background:#2e7d32; color:white; border:none; padding:15px; border-radius:50%; font-size:18px; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -200,47 +147,121 @@
   © 2025 Команда Egos
 </footer>
 
+<!-- Верхние кнопки -->
+<div class="top-buttons">
+  <button id="lang-btn">🌐 Язык</button>
+  <button id="theme-btn">🌓 Тема</button>
+  <button id="music-btn">🎵 Музыка</button>
+</div>
+
+<!-- Кнопка ИИ -->
+<button id="ai-btn">🤖</button>
+
+<!-- Модальное окно ИИ -->
+<div id="ai-modal">
+  <div class="ai-content">
+    <h3>Чат с ИИ</h3>
+    <div id="ai-chat"></div>
+    <input type="text" id="ai-input" placeholder="Напишите сообщение...">
+    <button id="ai-send">Отправить</button>
+    <button id="ai-close" style="background:#d32f2f;">Закрыть</button>
+  </div>
+</div>
+
+<!-- Фоновая музыка -->
+<audio id="bg-music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
 <script>
-  // Инициализация карты
+  // --- Карта ---
   const map = L.map('map').setView([48, 66], 5);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18
-  }).addTo(map);
-
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
   const weatherBox = document.getElementById('weather-box');
+  let marker;
 
-  // Обработчик клика по карте - получение погоды с open-meteo
   map.on('click', async function(e) {
     const lat = e.latlng.lat.toFixed(4);
     const lon = e.latlng.lng.toFixed(4);
-
     weatherBox.textContent = "Загрузка погоды...";
+    if(marker) map.removeLayer(marker);
+    marker = L.marker([lat, lon]).addTo(map);
 
     try {
       const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-      if (!res.ok) throw new Error("Ошибка сети");
-
+      if(!res.ok) throw new Error("Ошибка сети");
       const data = await res.json();
-      const temp = data.current_weather.temperature;
-      const windSpeed = data.current_weather.windspeed;
-      const weatherCode = data.current_weather.weathercode;
+      if(!data.current_weather) throw new Error("Данные погоды недоступны");
 
-      // Для простоты показываем температуру и скорость ветра, можно добавить описание по weatherCode
-      weatherBox.innerHTML = `
-        <h3>Погода в точке (${lat}, ${lon})</h3>
-        <p><b>Температура:</b> ${temp}°C</p>
-        <p><b>Скорость ветра:</b> ${windSpeed} км/ч</p>
-        <p><b>Код погоды:</b> ${weatherCode}</p>
-      `;
-    } catch (error) {
+      const temp = data.current_weather.temperature;
+      const wind = data.current_weather.windspeed;
+      const code = data.current_weather.weathercode;
+      weatherBox.innerHTML = `<h3>Погода в точке (${lat}, ${lon})</h3>
+      <p><b>Температура:</b> ${temp}°C</p>
+      <p><b>Скорость ветра:</b> ${wind} км/ч</p>
+      <p><b>Код погоды:</b> ${code}</p>`;
+    } catch(err) {
       weatherBox.textContent = "Ошибка получения данных о погоде.";
-      console.error(error);
+      console.error(err);
     }
   });
+
+  // --- ИИ чат ---
+  const aiBtn = document.getElementById('ai-btn');
+  const aiModal = document.getElementById('ai-modal');
+  const aiClose = document.getElementById('ai-close');
+  const aiSend = document.getElementById('ai-send');
+  const aiInput = document.getElementById('ai-input');
+  const aiChat = document.getElementById('ai-chat');
+
+  aiBtn.onclick = () => aiModal.style.display = "flex";
+  aiClose.onclick = () => aiModal.style.display = "none";
+
+  aiSend.onclick = async () => {
+    const userText = aiInput.value.trim();
+    if(!userText) return;
+    const userMsg = document.createElement('div');
+    userMsg.textContent = "Вы: " + userText;
+    userMsg.style.marginBottom = "8px";
+    aiChat.appendChild(userMsg);
+    aiInput.value = "";
+    aiChat.scrollTop = aiChat.scrollHeight;
+
+    const aiReply = document.createElement('div');
+    aiReply.style.marginBottom = "8px";
+    aiReply.style.fontWeight = "bold";
+    aiReply.textContent = "ИИ: Подождите, формирую ответ...";
+    aiChat.appendChild(aiReply);
+    aiChat.scrollTop = aiChat.scrollHeight;
+
+    // Заглушка ответа ИИ
+    await new Promise(r => setTimeout(r, 500));
+    const shortResp = userText.split('.').slice(0,1).join('.') + '.';
+    aiReply.textContent = "ИИ: " + shortResp;
+  };
+
+  // --- Верхние кнопки ---
+  const langBtn = document.getElementById('lang-btn');
+  langBtn.onclick = () => alert("Окно смены языка (можно реализовать)");
+
+  let darkMode = false;
+  const themeBtn = document.getElementById('theme-btn');
+  themeBtn.onclick = () => {
+    darkMode = !darkMode;
+    document.body.style.background = darkMode ? "#121212" : "#f5f7fa";
+    document.body.style.color = darkMode ? "#fff" : "#222";
+  };
+
+  const musicBtn = document.getElementById('music-btn');
+  const bgMusic = document.getElementById('bg-music');
+  let musicPlaying = false;
+  musicBtn.onclick = () => {
+    if(musicPlaying) bgMusic.pause();
+    else bgMusic.play();
+    musicPlaying = !musicPlaying;
+  };
 </script>
 
 </body>
