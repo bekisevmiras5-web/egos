@@ -53,6 +53,7 @@
   .dark #messages { background:#444; color:#fff; }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -67,6 +68,7 @@
 
 <main class="container">
 
+  <!-- КАРТА -->
   <section id="map-section">
     <h1>Интерактивная карта</h1>
     <p>Нажмите на любую точку карты, чтобы узнать погоду.</p>
@@ -74,45 +76,58 @@
     <div id="weather-box">Погода появится здесь.</div>
   </section>
 
-<section id="about-section" style="margin-top:50px;">
-  <h2>О проекте</h2>
-  <p>
-    Проект <b>Egos</b> — это инновационная система, объединяющая карту, 
-    погодные данные и искусственный интеллект для повышения эффективности
-    агрономии и работы фермеров. Наша цель — создать удобный цифровой инструмент,
-    который поможет принимать решения, основанные на данных.
-  </p>
+  <!-- КОМАНДА -->
+  <section id="team-section">
+    <h2>Наша команда</h2>
+    <div class="team-grid">
 
-  <p>
-    В основе проекта — технология интерактивных геоданных. Пользователь может 
-    нажать на любую точку карты и получить актуальную погодную информацию, 
-    включая температуру, ветер и код погодных условий. Это помогает фермерским 
-    хозяйствам быстро анализировать состояние полей, планировать работы, 
-    отслеживать климатические изменения и оперативно реагировать на погодные риски.
-  </p>
+      <div class="team-card">
+        <img src="img/sagindyk.jpg" alt="Sagindyk" />
+        <p><b>Sagindyk</b><br>AI Engineer<br>Создаю ИИ решения.</p>
+      </div>
 
-  <p>
-    Встроенный чат с ИИ позволяет получить консультацию в режиме реального времени:
-    от агрономических советов до анализа данных пользователя. ИИ подскажет,
-    какие культуры лучше подходят под климат региона, как повысить урожайность,
-    и даст рекомендации по уходу за почвой.
-  </p>
+      <div class="team-card">
+        <p><b>Kamila</b><br>Content Designer<br>Люблю спорт и книги.</p>
+        <img src="img/kamila.jpg" alt="Kamila" />
+      </div>
 
-  <p>
-    Мы стремимся развивать проект дальше — добавлять поддержку анализа почвы,
-    вывод показателей влажности, предупреждения о возможных климатических угрозах
-    и автоматическую оценку урожайности по выбранным точкам.
-  </p>
-
-  <p><b>Egos — это шаг к умному сельскому хозяйству будущего.</b></p>
-</section>
-
-
-  <section id="about-section" style="margin-top:50px;">
-    <h2>О проекте</h2>
-    <p>Интерактивная карта, команда и ИИ чат.</p>
+    </div>
   </section>
 
+  <!-- ОБНОВЛЁННОЕ ОПИСАНИЕ ПРОЕКТА -->
+  <section id="about-section" style="margin-top:50px;">
+    <h2>О проекте</h2>
+
+    <p>
+      Проект <b>Egos</b> — это инновационная система, объединяющая карту,
+      погодные данные и искусственный интеллект для повышения эффективности
+      агрономии и фермерской деятельности. Наша цель — создать удобный цифровой
+      инструмент, который помогает принимать решения, основанные на данных.
+    </p>
+
+    <p>
+      Основой проекта является интерактивная геокарта. Пользователь может нажать
+      на любую точку и получить актуальную погодную информацию: температуру,
+      скорость ветра и код погодных условий. Это помогает анализировать состояние
+      полей, планировать сельхозработы и отслеживать климатические изменения.
+    </p>
+
+    <p>
+      Встроенный ИИ-чат помогает получать рекомендации по агрономии: подбор
+      культур, анализ климата региона, советы по почве, обработке и урожайности.
+      Он работает как ассистент, который всегда под рукой.
+    </p>
+
+    <p>
+      В будущем мы планируем расширить функционал: добавить анализ почвы,
+      оценку влажности, предупреждения о климатических рисках и прогноз урожайности
+      по выбранным локациям.
+    </p>
+
+    <p><b>Egos — это шаг в будущее умного сельского хозяйства.</b></p>
+  </section>
+
+  <!-- ИСПОЛЬЗОВАННЫЕ РЕСУРСЫ -->
   <section id="used-section" style="margin-top:50px; margin-bottom:100px;">
     <h2>Использованные ресурсы</h2>
     <ul>
@@ -130,7 +145,7 @@
   © 2025 Команда Egos
 </footer>
 
-<!-- Чат ИИ -->
+<!-- ЧАТ ИИ -->
 <button id="chat-btn">💬</button>
 <div id="chat-modal">
   <div id="chat-box">
@@ -154,70 +169,83 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Карта
-  const map = L.map('map').setView([48, 66], 5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ maxZoom:18 }).addTo(map);
-  const weatherBox = document.getElementById('weather-box');
-  map.on('click', async function(e){
-    const lat = e.latlng.lat.toFixed(4);
-    const lon = e.latlng.lng.toFixed(4);
-    weatherBox.textContent = "Загрузка...";
-    try {
-      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
-      const data = await res.json();
-      const temp = data.current_weather.temperature;
-      const wind = data.current_weather.windspeed;
-      const code = data.current_weather.weathercode;
-      weatherBox.innerHTML = `<b>Температура:</b> ${temp}°C <br><b>Ветер:</b> ${wind} км/ч <br><b>Код:</b> ${code}`;
-    } catch(e) { weatherBox.textContent = "Ошибка получения погоды"; }
-  });
+// ==================================
+// КАРТА + ПОГОДА
+// ==================================
+const map = L.map('map').setView([48, 66], 5);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ maxZoom:18 }).addTo(map);
+const weatherBox = document.getElementById('weather-box');
 
-  // Чат ИИ
-  const chatBtn = document.getElementById('chat-btn');
-  const chatModal = document.getElementById('chat-modal');
-  const closeChat = document.getElementById('close-chat');
-  const messagesDiv = document.getElementById('messages');
-  const input = document.getElementById('input');
-  const sendBtn = document.getElementById('send');
+map.on('click', async function(e){
+  const lat = e.latlng.lat.toFixed(4);
+  const lon = e.latlng.lng.toFixed(4);
 
-  chatBtn.onclick = ()=> chatModal.style.display='flex';
-  closeChat.onclick = ()=> chatModal.style.display='none';
+  weatherBox.textContent = "Загрузка...";
+  try {
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+    const data = await res.json();
 
-  function addMessage(text, sender){
-    const div = document.createElement('div');
-    div.className = 'msg ' + sender;
-    div.textContent = text;
-    messagesDiv.appendChild(div);
-    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    const temp = data.current_weather.temperature;
+    const wind = data.current_weather.windspeed;
+    const code = data.current_weather.weathercode;
+
+    weatherBox.innerHTML = `<b>Температура:</b> ${temp}°C <br><b>Ветер:</b> ${wind} км/ч <br><b>Код:</b> ${code}`;
+  } catch(e) {
+    weatherBox.textContent = "Ошибка получения погоды";
   }
+});
 
-  async function sendMessage(){
-    const message = input.value.trim();
-    if(!message) return;
-    addMessage(message,'user');
-    input.value='';
-    try {
-      const reply = "Это короткий ответ от ИИ (максимум 4 предложения).";
-      addMessage(reply,'ai');
-    } catch(e){
-      addMessage("Ошибка API","ai");
-    }
-  }
+// ==================================
+// ЧАТ ИИ
+// ==================================
+const chatBtn = document.getElementById('chat-btn');
+const chatModal = document.getElementById('chat-modal');
+const closeChat = document.getElementById('close-chat');
+const messagesDiv = document.getElementById('messages');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('send');
 
-  sendBtn.addEventListener('click',sendMessage);
-  input.addEventListener('keypress', e=>{ if(e.key==='Enter') sendMessage(); });
+chatBtn.onclick = ()=> chatModal.style.display='flex';
+closeChat.onclick = ()=> chatModal.style.display='none';
 
-  // Тема
-  const themeBtn = document.getElementById('theme-btn');
-  themeBtn.onclick = ()=>{
-    document.body.classList.toggle('dark');
-  }
+function addMessage(text, sender){
+  const div = document.createElement('div');
+  div.className = 'msg ' + sender;
+  div.textContent = text;
+  messagesDiv.appendChild(div);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
 
-  // Музыка
-  const musicBtn = document.getElementById('music-btn');
-  const music = document.getElementById('bg-music');
-  musicBtn.onclick = ()=>{ music.paused?music.play():music.pause(); }
+async function sendMessage(){
+  const message = input.value.trim();
+  if(!message) return;
+  addMessage(message,'user');
+  input.value='';
 
+  const reply = "Это короткий ответ от ИИ (максимум 4 предложения).";
+  addMessage(reply,'ai');
+}
+
+sendBtn.addEventListener('click', sendMessage);
+input.addEventListener('keypress', e => {
+  if(e.key === 'Enter') sendMessage();
+});
+
+// ==================================
+// ТЕМА
+// ==================================
+document.getElementById('theme-btn').onclick = ()=>{
+  document.body.classList.toggle('dark');
+};
+
+// ==================================
+// МУЗЫКА
+// ==================================
+const music = document.getElementById('bg-music');
+document.getElementById('music-btn').onclick = ()=>{
+  music.paused ? music.play() : music.pause();
+};
 </script>
+
 </body>
 </html>
